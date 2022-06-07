@@ -1,5 +1,6 @@
 const client = require("../db");
 
+// Fetch table rows Controller
 exports.getTable = async (req, res) => {
   console.log("ingtt");
   try {
@@ -18,6 +19,7 @@ exports.getTable = async (req, res) => {
   }
 };
 
+//Delete Row Controller
 exports.deleteTable = async (req, res) => {
   const id = req.query.ID;
 
@@ -35,19 +37,21 @@ exports.deleteTable = async (req, res) => {
     });
 };
 
+//Insert Row Controller
 exports.createTable = async (req, res) => {
   const { Id, name, Age } = req.query;
-  console.log(Id,name,Age);
-  client.query(`INSERT INTO  DATA  VALUES (${Id},${name},${Age});`)
-  .then((result) => {
+  console.log(Id, name, Age);
+  client
+    .query(`INSERT INTO  DATA  VALUES (${Id},${name},${Age});`)
+    .then((result) => {
       res.status(200).json({
         message: "Data successfully inserted",
-      })
-  })
-  .catch((err) => {
-    console.log(err);
-    res.status(503).json({
-      message:`Server error`,
+      });
     })
-  })
+    .catch((err) => {
+      console.log(err);
+      res.status(503).json({
+        message: `Server error`,
+      });
+    });
 };

@@ -19,6 +19,8 @@ app.get("/", (req, res) => {
 client.connect(() => {
   console.log("running database connection");
 });
+
+//Route directing to all the table Routes;
 app.use("/tables",tableRoutes); 
 
 app.listen(port, () => {
