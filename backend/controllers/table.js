@@ -34,3 +34,20 @@ exports.deleteTable = async (req, res) => {
       });
     });
 };
+
+exports.createTable = async (req, res) => {
+  const { Id, name, Age } = req.query;
+  console.log(Id,name,Age);
+  client.query(`INSERT INTO  DATA  VALUES (${Id},${name},${Age});`)
+  .then((result) => {
+      res.status(200).json({
+        message: "Data successfully inserted",
+      })
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(503).json({
+      message:`Server error`,
+    })
+  })
+};
