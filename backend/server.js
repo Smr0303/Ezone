@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const client = require("./db");
@@ -17,10 +19,7 @@ app.get("/", (req, res) => {
 client.connect(() => {
   console.log("running database connection");
 });
-app.use("/tables",tableRoutes,()=>{
-    console.log("running tables");
-
-}); 
+app.use("/tables",tableRoutes); 
 
 app.listen(port, () => {
   console.log("In backend");
