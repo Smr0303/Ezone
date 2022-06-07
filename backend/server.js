@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const client = require("./db");
 const tableRoutes = require("./routes/table");
-const port = 8000;
+const port = process.env.PORT ||8000;
 
 const app = express();
 
