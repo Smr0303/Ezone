@@ -4,16 +4,33 @@ exports.getTable = async (req, res) => {
   console.log("ingtt");
   try {
     const data = await client.query(`SELECT * FROM DATA;`);
-    const array = data.rows
+    const array = data.rows;
     console.log(data.rows);
     res.status(200).json({
       array,
       message: "All rows",
     });
   } catch (err) {
-      res.status(500).json({
-          message: err.message,
-      })
+    res.status(500).json({
+      message: err.message,
+    });
     throw err;
   }
+};
+
+exports.deleteTable = async (req, res) => {
+  const id = req.query.ID;
+
+  client
+    .query(`DELETE FROM DATA WHERE ID=${id};`)
+    .then((resut) => {
+      res.status(200).json({
+        message: `DELETED row with id ${id}`,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Server error occurred",
+      });
+    });
 };
