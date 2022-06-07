@@ -39,10 +39,16 @@ exports.deleteTable = async (req, res) => {
 
 //Insert Row Controller
 exports.createTable = async (req, res) => {
-  const { Id, name, Age } = req.query;
-  console.log(Id, name, Age);
+  const { Id, name, Age } = req.body;
+  const user = {
+    Id,
+    name,
+    Age,
+  };
   client
-    .query(`INSERT INTO  DATA  VALUES (${Id},${name},${Age});`)
+    .query(
+      `INSERT INTO  DATA  VALUES ('${user.Id}','${user.name}','${user.Age}');`
+    )
     .then((result) => {
       res.status(200).json({
         message: "Data successfully inserted",
