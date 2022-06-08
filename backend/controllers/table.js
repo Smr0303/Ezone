@@ -40,6 +40,7 @@ exports.deleteTable = async (req, res) => {
 //Insert Row Controller
 exports.createTable = async (req, res) => {
   const { Id, name, Age } = req.body;
+  console.log(Id, name, Age);
   const user = {
     Id,
     name,
